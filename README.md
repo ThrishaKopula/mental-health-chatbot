@@ -18,7 +18,7 @@ Supportly is a full-stack, AI-powered therapeutic chatbot designed to provide em
 |--------------|-------------------------------|
 | **Frontend** | Next.js (React) + Tailwind CSS |
 | **Backend**  | Node.js (API Routes in Next.js) |
-| **AI**       | OpenAI GPT-4                  |
+| **AI**       | OpenAI GPT-3.5                  |
 | **Vector DB**| Pinecone                      |
 | **Deployment** | Vercel                      |
 
