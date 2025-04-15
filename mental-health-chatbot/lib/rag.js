@@ -32,7 +32,26 @@ export async function embedAndStore(dataset) {
     }
   }
 
-  console.log('🧠 Uploading', vectors.length, 'embeddings to Pinecone...');
+  console.log('Uploading', vectors.length, 'embeddings to Pinecone...');
   await index.upsert(vectors);
-  console.log('✅ Upload to Pinecone complete!');
+  console.log('Upload to Pinecone complete!');
 }
+
+export async function retrieveRelevantContext(userMessage) {
+    const embeddingResponse = await openai.embeddings.create({
+      model: 'text-embedding-ada-002',
+      input: userMessage,
+    });
+  
+    const queryEmbedding = embeddingResponse.data[0].embedding;
+  
+    const queryResponse = await index.query({
+      vector: queryEmbedding,
+      topK: 1,
+      includeMetadata: true,
+    });
+  
+    const bestMatch = queryResponse.matches?.[0]?.metadata;
+    return bestMatch?.response || "I'm here to listen. Can you tell me more?";
+  }
+  

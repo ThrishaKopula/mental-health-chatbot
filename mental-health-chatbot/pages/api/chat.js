@@ -1,17 +1,20 @@
-import { Configuration, OpenAIApi } from 'openai';
-import { retrieveRelevantContext } from '@/lib/rag';
+import { retrieveRelevantContext } from '../../lib/rag.js';
+import OpenAI from 'openai';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const openai = new OpenAIApi(
-  new Configuration({ apiKey: process.env.OPENAI_API_KEY })
-);
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
 
 export default async function handler(req, res) {
   const { message, history } = req.body;
 
   const context = await retrieveRelevantContext(message);
 
-  const completion = await openai.createChatCompletion({
-    model: 'gpt-4',
+  const completion = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
     messages: [
       { role: 'system', content: `You are a compassionate therapist. Use this context: ${context}` },
       ...history,
@@ -19,5 +22,5 @@ export default async function handler(req, res) {
     ],
   });
 
-  res.status(200).json({ response: completion.data.choices[0].message.content });
+  res.status(200).json({ response: completion.choices[0].message.content });
 }
