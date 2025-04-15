@@ -2,15 +2,18 @@
   "name": "mental-health-chatbot",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "upload": "node scripts/upload.js"
   },
   "dependencies": {
     "@pinecone-database/pinecone": "^5.1.1",
     "dotenv": "^16.5.0",
+    "langchain": "^0.0.152",
     "next": "15.3.0",
     "openai": "^4.94.0",
     "react": "^19.0.0",

@@ -1,14 +1,25 @@
-import { index } from './pinecone';
-import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
+import OpenAI from 'openai';
+import { index } from './pinecone.js';
 
-const embeddings = new OpenAIEmbeddings();
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+async function getEmbedding(text) {
+  const response = await openai.embeddings.create({
+    model: 'text-embedding-ada-002',
+    input: text,
+  });
+
+  return response.data[0].embedding;
+}
 
 export async function embedAndStore(dataset) {
   const vectors = [];
 
-  dataset.intents.forEach((intent, i) => {
-    intent.patterns.forEach(async (pattern, j) => {
-      const embedding = await embeddings.embedQuery(pattern);
+  for (const [i, intent] of dataset.intents.entries()) {
+    for (const [j, pattern] of intent.patterns.entries()) {
+      const embedding = await getEmbedding(pattern);
       vectors.push({
         id: `${intent.tag}-${i}-${j}`,
         values: embedding,
@@ -18,20 +29,10 @@ export async function embedAndStore(dataset) {
           pattern,
         },
       });
-    });
-  });
+    }
+  }
 
+  console.log('🧠 Uploading', vectors.length, 'embeddings to Pinecone...');
   await index.upsert(vectors);
-}
-
-export async function retrieveRelevantContext(message) {
-  const queryEmbedding = await embeddings.embedQuery(message);
-
-  const result = await index.query({
-    vector: queryEmbedding,
-    topK: 1,
-    includeMetadata: true,
-  });
-
-  return result.matches?.[0]?.metadata?.response || '';
+  console.log('✅ Upload to Pinecone complete!');
 }
