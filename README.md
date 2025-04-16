@@ -2,6 +2,8 @@
 
 Supportly is a full-stack, AI-powered therapeutic chatbot designed to provide emotional support and mental wellness guidance. It uses Retrieval-Augmented Generation (RAG) to respond empathetically to users suffering from anxiety or depression, while preserving contextual understanding during sessions.
 
+Dataset used: https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data?resource=download
+
 <img width="999" alt="Screenshot 2025-04-15 at 4 08 06 PM" src="https://github.com/user-attachments/assets/5ef11205-458b-4622-bb4d-1e93e46b2a5f" />
 
 ---
