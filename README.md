@@ -1,4 +1,4 @@
-# Supportly – Mental Health Chatbot
+# Supportly - Mental Health Chatbot
 
 Supportly is a full-stack, AI-powered therapeutic chatbot designed to provide emotional support and mental wellness guidance. It uses Retrieval-Augmented Generation (RAG) to respond empathetically to users suffering from anxiety or depression, while preserving contextual understanding during sessions.
 
@@ -10,7 +10,7 @@ Dataset used: https://www.kaggle.com/datasets/elvis23/mental-health-conversation
 
 ### Live Demo
 
-👉 [supportly-chatbot.vercel.app](https://supportly-iota.vercel.app/) ← _Try it live!_
+[supportly-chatbot.vercel.app](https://supportly-iota.vercel.app/) ← _Try it live!_
 
 ---
 
@@ -26,12 +26,12 @@ Dataset used: https://www.kaggle.com/datasets/elvis23/mental-health-conversation
 
 ---
 
-### ✨ Key Features
+### Key Features
 
-- **💬 Conversational AI** — Powered by OpenAI’s GPT-3.5
-- **🧠 Retrieval-Augmented Generation (RAG)** — Uses Pinecone to serve personalized mental health responses from a structured intent dataset
-- **📚 Contextual Memory** — Retains chat history during session for natural, flowing conversations
-- **🎨 Clean UI** — Fully responsive interface built with Tailwind CSS
-- **⚡ Serverless** — Deployed on Vercel for instant scalability and zero maintenance
+- **Conversational AI** — Powered by OpenAI’s GPT-3.5
+- **Retrieval-Augmented Generation (RAG)** — Uses Pinecone to serve personalized mental health responses from a structured intent dataset
+- **Contextual Memory** — Retains chat history during session for natural, flowing conversations
+- **Clean UI** — Fully responsive interface built with Tailwind CSS
+- **Serverless** — Deployed on Vercel for instant scalability and zero maintenance
 
 ---
